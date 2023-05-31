@@ -1,0 +1,116 @@
+.form
+
+  //visibility: hidden
+  //opacity: 0
+  transition: visibility 0s, opacity .5s linear
+
+  background-color: white
+  position: fixed
+  border-radius: 20px
+  top: 50vh
+  left: 50%
+  transform: translate(-50%, -50%)
+  box-shadow: 0 0 0 1280px rgba(0, 0, 0, 0.7)
+  z-index: 1000
+
+.form_active
+  visibility: visible
+  opacity: 1
+
+.form__container
+  display: flex
+  flex-direction: column
+  //justify-content: center
+  align-items: center
+  background-color: white
+  color: black
+  border-radius: 20px
+
+  width: 430px
+  min-height: 330px
+
+
+.form__title
+  color: black
+  background-color: white
+  font-size: 24px
+  font-weight: bold
+  width: 358px
+  margin: 34px
+
+.form__close-button
+  position: absolute
+  top: -38px
+  right: -38px
+  transition: 0.3s
+  background-color: transparent
+
+.form__close-button:hover
+  cursor: pointer
+  opacity: .5
+
+
+// form inputs
+.form__name
+  background-color: white
+  color: black
+  border: 0
+  outline: 0
+  border-bottom: 1px solid #545454
+  width: 358px
+  height: 40px
+
+.form__name:hover
+  border-bottom: 1px solid #0f7add
+
+
+.form__description
+  background-color: white
+  color: black
+  border: 0
+  outline: 0
+  border-bottom: 1px solid #545454
+  width: 358px
+  height: 40px
+
+.form__description:hover
+  border-bottom: 1px solid #0f7add
+
+.form__submit
+  position: absolute
+  width: 358px
+  height: 50px
+  bottom: 30px
+  transition: 0.3s
+
+.form__submit:hover
+  cursor: pointer
+  opacity: .5
+
+.form__submit:disabled
+  cursor: not-allowed
+  opacity: 0.18
+  border: 2px solid gray
+
+.form__submit:disabled:hover
+  cursor: not-allowed
+  opacity: 0.25
+  border: 2px solid gray
+
+.form__error
+  position: relative
+  margin-top: 5px
+  margin-bottom: 5px
+  //self flex align to left
+  align-self: flex-start
+  margin-left: 36px
+
+  background-color: white
+  color: white
+
+.form__error-active
+
+  background-color: white
+  color: red
+
+//visibility: hidden

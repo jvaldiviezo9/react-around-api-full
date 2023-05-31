@@ -1,0 +1,64 @@
+.infotooltip__success {
+  width: 430px;
+  height: 330px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.infotooltip__success-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  border-radius: 10px;
+}
+
+.infotooltip__success-image {
+  width: 120px;
+  height: 120px;
+  background: white;
+}
+
+.infotooltip__success-title {
+  margin-top: 32px;
+  color: black;
+  font-size: 24px;
+  line-height: 29.05px;
+  font-weight: 900;
+  background-color: white;
+}
+
+.infotooltip__fail {
+  width: 430px;
+  height: 330px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.infotooltip__fail-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  border-radius: 10px;
+}
+
+.infotooltip__fail-image {
+  width: 120px;
+  height: 120px;
+  background: white;
+}
+
+.infotooltip__fail-title {
+  margin-top: 32px;
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  line-height: 29.05px;
+  font-weight: 900;
+  background-color: white;
+}
+
+/*# sourceMappingURL=InfoTooltip.css.map */

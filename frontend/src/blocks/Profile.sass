@@ -1,0 +1,94 @@
+.profile
+  display: flex
+  justify-content: space-between
+  align-items: center
+  @media screen and (max-width: 622px)
+    flex-direction: column
+
+
+.profile__container
+  position: relative
+  display: flex
+  align-content: center
+  align-items: center
+  margin-top: 36.5px
+
+  @media screen and (max-width: 622px)
+    flex-direction: column
+
+.profile__info
+  margin-left: 30px
+
+  @media screen and (max-width: 622px)
+    margin-top: 26.25px
+
+.profile__name
+  @media screen and (max-width: 622px)
+    margin-bottom: 14px
+
+.profile__picture
+  border-radius: 50%
+  width: 128px
+  height: 128px
+
+.profile__icon
+    position: absolute
+    top: 40%
+    left: 10%
+    width: 32px
+    height: 32px
+    cursor: pointer
+    opacity: 0
+    background: transparent
+
+
+.profile__avatar:hover
+  cursor: pointer
+  opacity: 0.5
+  //transform: translate(50px, -100px)
+.profile__avatar:hover > .profile__icon
+  cursor: pointer
+  opacity: 1
+
+.profile__edit
+
+  margin-left: 18px
+
+  width: 24px
+  height: 24px
+  border: 1px solid white
+
+  background-image: url('../images/edit_button.png')
+  background-position: center
+  background-repeat: no-repeat
+
+  transition: 0.3s
+
+  @media screen and (max-width: 707px)
+    margin-left: 10px
+    margin-right: 10px
+
+  @media screen and (max-width: 622px)
+    flex-direction: column
+    transform: translate(110px, -58px)
+    margin-left: 10px
+
+.profile__edit:hover
+  opacity: .5
+  cursor: pointer
+
+
+.profile__add
+  border: 2px solid white
+  width: 150px
+  height: 50px
+
+  transition: .3s
+
+  @media screen and (max-width: 622px)
+    margin-top: 36px
+
+
+.profile__add:hover
+  opacity: .5
+  cursor: pointer
