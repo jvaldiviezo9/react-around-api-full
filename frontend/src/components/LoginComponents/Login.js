@@ -21,10 +21,15 @@ const Login = (props) => {
         const tokenValidation = await auth.TokenValidation(response.token)
 
         if (tokenValidation._id) {
-
           localStorage.setItem("jwt", response.token);
-          props.setIsLoggedIn(true);
-          history.push("/");
+          
+          // wait before redirecting
+          setTimeout(() => {
+            window.location.reload();
+            props.setIsLoggedIn(true);
+            history.push("/");
+          }, 500);
+        
         } else {
           console.log("Token Validation failed:", tokenValidation.error);
         }
