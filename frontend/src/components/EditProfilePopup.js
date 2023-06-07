@@ -7,8 +7,8 @@ function EditProfilePopup(props) {
     const name = event.target.elements.form__name.value;
     const description = event.target.elements.form__description.value;
 
-    console.log(`Name: ${name}`);
-    console.log(`Description: ${description}`);
+    //console.log(`Name: ${name}`);
+    //console.log(`Description: ${description}`);
 
     // ref: https://stackoverflow.com/questions/73337619/uncaught-in-promise-typeerror-setexercises-is-not-a-function
     props.ApiElement.patchUserInfo(name, description).then((userInfo) => {

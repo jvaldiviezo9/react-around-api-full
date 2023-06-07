@@ -23,7 +23,7 @@ const AuthorizationMiddleware = (req, res, next) => {
 
     // Si el token es válido, añadir el payload al objeto user
     req.user = payload;
-    console.log(req.user._id)
+    //console.log(req.user._id)
     next();
   });
 };

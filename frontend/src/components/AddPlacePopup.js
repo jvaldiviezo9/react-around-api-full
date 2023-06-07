@@ -1,12 +1,17 @@
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
+  
+  const cards = props.cards;
+  const setCards = props.setCards;
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
+    //console.log("submit");
     props.ApiElement.postCard(e.target.form__name.value, e.target.form__description.value).then((cardInfo) => {
-      console.log(cardInfo);
+      //console.log(cardInfo);
       props.setPopupStatus(false);
+      setCards([cardInfo, ...cards]);
     });
   }
 

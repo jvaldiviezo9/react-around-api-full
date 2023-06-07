@@ -28,7 +28,7 @@ function Main(props) {
         try {
           const tokenValidation = await auth.TokenValidation(token);
 
-          if (tokenValidation.data._id) {
+          if (tokenValidation._id) {
             setIsLoggedIn(true);
             setSignedIn(true);
             }
@@ -41,14 +41,17 @@ function Main(props) {
     }
     checkToken();
   }, [isLoggedIn, location.pathname]);
+  
+  // control the render of the cards
+  const [cards, setCards] = useState([]);
 
   return (
 
       <Switch>
         <Route exact path="/">
           {isLoggedIn ? <>
-            <Profile currentUser={currentUser} ApiElement={props.ApiElement}/>
-            <Elements ApiElement={props.ApiElement}/>
+            <Profile currentUser={currentUser} ApiElement={props.ApiElement} cards={cards} setCards={setCards}/>
+            <Elements ApiElement={props.ApiElement} cards={cards} setCards={setCards}/>
           </> : <Redirect to="/signin" />}
         </Route>
         <Route path="/signin">

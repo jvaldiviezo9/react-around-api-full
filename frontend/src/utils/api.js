@@ -91,5 +91,12 @@ class Api{
   }
 }
 
-const ApiElement =  new Api('https://around.nomoreparties.co/v1/cohort-1-es', "3e02ecdf-737d-4954-9ff6-836c396f5812");
+// get the jwt token from the localhost
+const getjwt = () => {
+  return localStorage.getItem('jwt');
+}
+
+const ApiElement =  new Api('http://localhost:4000', "Bearer " + getjwt());
+
+
 export default ApiElement;

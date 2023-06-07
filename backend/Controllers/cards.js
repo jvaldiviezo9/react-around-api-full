@@ -2,7 +2,8 @@ const cardModelMongo = require('../models/cards');
 
 const getCards = (req, res) => {
   cardModelMongo.find({})
-    .then((cards) => res.send({ data: cards }))
+    .sort({ createdAt: -1 })
+    .then((cards) => res.send(cards))
     .catch((err) => res.status(500).send({ message: `No se encuentra ninguna tarjeta: ${err}` }));
 };
 
@@ -15,7 +16,7 @@ const createCard = (req, res) => {
   const owner = req.user._id;
 
   cardModelMongo.create({name, link, owner})
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => res.status(400).send({ message: `No se ha podido crear la tarjeta: ${err}` }));
 };
 
@@ -26,7 +27,12 @@ const deleteCard = (req, res) => {
       err.statusCode = 404;
       throw err;
     })
-    .then((card) => res.send({ data: card }))
+    .then(() => {
+      cardModelMongo.find({})
+        .sort({ createdAt: -1 })
+        .then((cards) => res.send(cards))
+        .catch((err) => res.status(500).send({ message: `No se encuentra ninguna tarjeta: ${err}` }));
+    })
     .catch((err) => res.status(400).send({ message: `Error: ${err}` }));
 };
 
@@ -37,7 +43,7 @@ const likeCard = (req, res) => {
       err.statusCode = 404;
       throw err;
     })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => res.status(400).send({ message: `Error: ${err}` }));
 };
 
@@ -48,7 +54,7 @@ const dislikeCard = (req, res) => {
       err.statusCode = 404;
       throw err;
     })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send(card))
     .catch((err) => res.status(400).send({ message: `Hubo un error: ${err}` }));
 };
 

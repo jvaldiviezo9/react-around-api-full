@@ -3,7 +3,7 @@ import PopupWithForm from './PopupWithForm';
 function EditAvatarPopup(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit");
+    //console.log("submit");
     props.ApiElement.patchAvatar(e.target.form__name.value).then((userInfo) => {
       props.setUserObject(userInfo);
     });

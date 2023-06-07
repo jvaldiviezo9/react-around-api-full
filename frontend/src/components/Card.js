@@ -21,11 +21,12 @@ const Card = (props) => {
 
   useEffect(() => {
     cardObject.likes.forEach((like) => {
-      if (like._id === currentUser._id) {
+      if (like === currentUser._id) {
         setLikeSrc([true,likeActive]);
+        return;
       }
     })
-  }, [currentUser])
+  }, [currentUser, cardObject])
 
   const onLikeClick = () => {
     if (likeSrc[0]) setLikeSrc([false,likeDefault]);
@@ -46,8 +47,15 @@ const Card = (props) => {
     if (likeSrc[0]) {
       ApiElement.deleteLike(card_id)
       .then((data) => {
-        setLikeSrc([false,likeDefault]);
-        cardObject.likes = data.likes;
+        
+        if (!Array.isArray(data.likes)) {
+          cardObject.likes = []
+          setLikeSrc([false,likeDefault]);
+        }else{
+          cardObject.likes = data.likes;
+          setLikeSrc([false,likeDefault]);
+        }
+        
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +89,7 @@ const Card = (props) => {
 
   const imageOpen = () => {
     setImagePopup(true);
-    console.log("click");
+    //console.log("click");
   };
 
   const [imagePopup, setImagePopup] = useState(false);
@@ -93,7 +101,7 @@ const Card = (props) => {
     <>
       <div className="elements__card" data-user-id={cardObject._id}>
 
-        {(cardObject.owner._id === currentUser._id) &&
+        {(cardObject.owner[0] === currentUser._id) &&
             <img className="elements__trash" onClick={handleCardDelete} src={trashIcon} alt="trash icon" />}
 
         <img onClick={imageOpen} className="elements__image" src={cardObject.link} alt="" />

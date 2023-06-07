@@ -46,15 +46,38 @@ const getUsers = (req, res) => {
 const getInfo = (req, res) => {
 
   // console.log(req.user)
-
   userModelMongo.findById(req.user._id)
     .then(user => {
       if (!user) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
 
-      res.json({ data: user });
+      res.json(user);
 
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).json({ message: 'Error de servidor' });
+    });
+}
+
+const updateInfo = (req, res) => {
+  // Find the user by _id
+  userModelMongo.findById(req.user._id)
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+
+      // Update the user object with the parameters from the request
+      Object.assign(user, req.body);
+
+      // Save the updated user
+      return user.save();
+    })
+    .then(updatedUser => {
+      // Return the updated user as the response
+      res.json(updatedUser);
     })
     .catch(err => {
       console.log(err);
@@ -112,7 +135,7 @@ const addProfile = (req, res) => {
       err.status = 404;
       throw err;
     })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => res.status(400).send({ message: 'Hubo un error al guardar el usuario', error: err }));
 }
 
@@ -123,7 +146,7 @@ const addAvatar = (req, res) => {
       err.status = 404;
       throw err;
     })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => res.status(400).send({ message: 'Hubo un error al guardar el usuario', error: err }));
 }
 
@@ -132,6 +155,7 @@ module.exports = {
   getUsers,
   getUserById,
   getInfo,
+  updateInfo,
   createUser,
   addProfile,
   addAvatar

@@ -1,4 +1,4 @@
-const baseURL = 'https://register.nomoreparties.co';
+const baseURL = 'http://localhost:4000';
 
 export async function Signup(email, password) {
   const url = `${baseURL}/signup`;

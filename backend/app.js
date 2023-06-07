@@ -1,5 +1,5 @@
 const express = require('express');
-const { port = 3000 } = process.env;
+const { port = 4000 } = process.env;
 const mongoose = require('mongoose');
 const app = express();
 
@@ -10,7 +10,10 @@ const {login, createUser} = require('./controllers/users');
 const UsersRouter = require('./routes/users');
 const CardsRouter = require('./routes/cards');
 
+// Cors to avoid CORS errors
+const cors = require('cors');
 
+app.use(cors());
 // Middlewares
 
 app.use(express.json());

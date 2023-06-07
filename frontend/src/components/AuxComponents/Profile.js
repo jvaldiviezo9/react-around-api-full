@@ -9,6 +9,9 @@ const Profile = (props) => {
 
   const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
   const ApiElement = props.ApiElement
+  
+  const cards = props.cards;
+  const setCards = props.setCards;
 
   return (
     <section className="profile">
@@ -20,7 +23,7 @@ const Profile = (props) => {
 
       </div>
 
-      <ButtonProfileAddCard ApiElement={ApiElement}/>
+      <ButtonProfileAddCard ApiElement={ApiElement} cards={cards} setCards={setCards}/>
 
     </section>
   );

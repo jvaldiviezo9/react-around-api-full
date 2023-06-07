@@ -17,8 +17,14 @@ const Register = () => {
     try {
       const response = await auth.Signin(email.value, password.value)
       if (response.token) {
+        
+        debugger
+        
         const tokenValidation = await auth.TokenValidation(response.token)
-        if (tokenValidation.data._id) {
+        
+        debugger
+        
+        if (tokenValidation._id) {
           localStorage.setItem("jwt", response.token);
         } else {
           console.log("Token Validation failed:", tokenValidation.error);

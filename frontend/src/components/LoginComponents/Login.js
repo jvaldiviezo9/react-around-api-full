@@ -20,7 +20,7 @@ const Login = (props) => {
       if (response.token) {
         const tokenValidation = await auth.TokenValidation(response.token)
 
-        if (tokenValidation.data._id) {
+        if (tokenValidation._id) {
 
           localStorage.setItem("jwt", response.token);
           props.setIsLoggedIn(true);
