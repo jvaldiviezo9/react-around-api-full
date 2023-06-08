@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 const AuthorizationMiddleware = (req, res, next) => {
   let tokenRaw = req.headers.authorization;
 
@@ -16,7 +17,7 @@ const AuthorizationMiddleware = (req, res, next) => {
   }
 
   // Verificar y decodificar el token
-  jwt.verify(token, 'your-secret-key', (err, payload) => {
+  jwt.verify(token, JWT_SECRET, (err, payload) => {
     if (err) {
       return res.status(401).json({ message: 'Token de autorización inválido' });
     }

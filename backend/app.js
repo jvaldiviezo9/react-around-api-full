@@ -1,6 +1,11 @@
+require('dotenv').config({ path: '../.env' });
+// const { NODE_ENV, JWT_SECRET } = process.env;
+
 const express = require('express');
-const { port = 4000 } = process.env;
+const { PORT = 4000 } = process.env;
 const mongoose = require('mongoose');
+const errorHandler = require('./middleware/errors');
+
 const app = express();
 
 const auth = require('./middleware/auth');
@@ -26,8 +31,10 @@ app.use(auth);
 app.use('/users', UsersRouter);
 app.use('/cards', CardsRouter);
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+app.use(errorHandler);
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
 
 
