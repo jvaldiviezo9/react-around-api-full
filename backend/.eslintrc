@@ -1,0 +1,6 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "camelcase": ["error", { "ignoreProperties": ["_id"] }]
+  }
+}
