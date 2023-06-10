@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
-    "start": "nodemon app.js",
-    "devLocal": "nodemon app_test.js"
+    "start": "node app.js",
+    "devLocal": "nodemon app.js"
   },
   "author": "Aristh Valdiviezo",
   "license": "ISC",
