@@ -1,3 +1,4 @@
+
 class Api{
   constructor(baseUrl, apiKey){
     this.baseUrl = baseUrl;
@@ -96,7 +97,7 @@ const getjwt = () => {
   return localStorage.getItem('jwt');
 }
 
-const ApiElement =  new Api('http://localhost:4000', "Bearer " + getjwt());
+const ApiElement =  new Api('https://api.jvaldiviezo.desarrollointerno.com', "Bearer " + getjwt());
 
 
 export default ApiElement;

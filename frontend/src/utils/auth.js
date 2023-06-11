@@ -1,7 +1,10 @@
-const baseURL = 'http://localhost:4000';
+const baseURL = 'https://api.jvaldiviezo.desarrollointerno.com'
 
 export async function Signup(email, password) {
+
   const url = `${baseURL}/signup`;
+  
+  console.log("url:", url)
 
   const data = {
     password,

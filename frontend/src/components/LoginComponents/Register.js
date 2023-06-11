@@ -18,11 +18,7 @@ const Register = () => {
       const response = await auth.Signin(email.value, password.value)
       if (response.token) {
         
-        debugger
-        
         const tokenValidation = await auth.TokenValidation(response.token)
-        
-        debugger
         
         if (tokenValidation._id) {
           localStorage.setItem("jwt", response.token);
@@ -52,8 +48,8 @@ const Register = () => {
         // delay 1000 ms and redirect to "/"
         // se hace para esperar a que el servidor actualice la base de datos
         setTimeout(() => {
-          
           storeToken(email, password).then(() => {
+            window.location.reload();
             history.push("/")
           }).catch((error) => {
             // un error pasó al guardar el token, pero si hubo registro exitoso.
