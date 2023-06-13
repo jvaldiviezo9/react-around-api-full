@@ -24,7 +24,7 @@ const login = (req, res, next) => {
       const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
       res.json({ token });
     })
-    .catch(() => next({ statusCode: 500, message: 'Error de servidor' }));
+    .catch(() => next({ statusCode: 401, message: 'Email o Password incorrecto' }));
 };
 
 const getUsers = (req, res, next) => {

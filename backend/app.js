@@ -10,12 +10,17 @@ const auth = require('./middleware/auth');
 const { login, createUser } = require('./controllers/users');
 const UsersRouter = require('./routes/users');
 const CardsRouter = require('./routes/cards');
+
+const { requestLogger, errorLogger } = require('./middleware/logger');
+
 // Cors to avoid CORS errors
 
 const app = express();
 
 app.use(cors());
 // Middlewares
+
+app.use(requestLogger);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +37,8 @@ app.post('/signup', createUser);
 app.use(auth);
 app.use('/users', UsersRouter);
 app.use('/cards', CardsRouter);
+
+app.use(errorLogger);
 
 app.use(errorHandler);
 

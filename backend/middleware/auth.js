@@ -1,30 +1,33 @@
 const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = process.env;
+
 const AuthorizationMiddleware = (req, res, next) => {
   const tokenRaw = req.headers.authorization;
 
-  // remover "Bearer" del token
+  // Remove "Bearer" from the token
   let token = '';
   try {
     token = tokenRaw.replace('Bearer ', '');
   } catch (err) {
-    return res.status(401).json({ message: 'Formato incorrecto de autorización' });
+    const error = { statusCode: 403, message: 'Formato incorrecto de autorización' };
+    return next(error);
   }
 
   if (!token) {
-    return res.status(401).json({ message: 'Token de autorización no encontrado' });
+    const error = { statusCode: 401, message: 'Token de autorización no encontrado' };
+    return next(error);
   }
 
-  // Verificar y decodificar el token
+  // Verify and decode the token
   jwt.verify(token, JWT_SECRET, (err, payload) => {
     if (err) {
-      return res.status(401).json({ message: 'Token de autorización inválido' });
+      const error = { statusCode: 401, message: 'Token de autorización inválido' };
+      return next(error);
     }
 
-    // Si el token es válido, añadir el payload al objeto user
+    // If the token is valid, add the payload to the req.user object
     req.user = payload;
-    // console.log(req.user._id)
     next();
   });
 };
