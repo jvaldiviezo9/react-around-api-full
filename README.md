@@ -59,8 +59,7 @@ In case of an error, the API returns a JSON response with the following structur
 ```json
 {
   "statusCode": "<status_code>",
-  "message": "<error_message>",
-  "error": "<optional_error_details>"
+  "message": "<error_message>"
 }
 ```
 
