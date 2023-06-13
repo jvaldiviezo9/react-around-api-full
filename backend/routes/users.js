@@ -9,7 +9,7 @@ const {
   getInfo,
   updateInfo,
   addProfile,
-  addAvatar
+  addAvatar,
 } = require('../controllers/users');
 
 // userRouter.use(bodyParser.json());

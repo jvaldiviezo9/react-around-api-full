@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const validatorjs = require('validator');
 const bcrypt = require('bcryptjs');
-
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -23,9 +22,7 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: 'https://practicum-content.s3.us-west-1.amazonaws.com/resources/moved_avatar_1604080799.jpg',
     validate: {
-      validator: (v) => {
-        return /(http|https):\/\/(www\.)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*$/.test(v);
-      },
+      validator: (v) => /(http|https):\/\/(www\.)?([\w-]{1,32}\.[\w-]{1,32})[^\s@]*$/.test(v),
     },
   },
   email: {
@@ -33,22 +30,20 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     validate: {
-      validator: (v) => {
-        return validatorjs.isEmail(v);
-      }
-    }
+      validator: (v) => validatorjs.isEmail(v),
+    },
   },
   password: {
     type: String,
     required: true,
     select: false,
-  }
+  },
 });
 
 // Add this line to create the unique index on the email field
 // userSchema.index({ email: 1 }, { unique: true });
 
-userSchema.statics.findUserByCredentials = function findUserByCredentials (email, password) {
+userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
   return this.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
@@ -66,5 +61,4 @@ userSchema.statics.findUserByCredentials = function findUserByCredentials (email
     });
 };
 
-
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model('user', userSchema);

@@ -1,22 +1,18 @@
 require('dotenv').config({ path: '../.env' });
-// const { NODE_ENV, JWT_SECRET } = process.env;
 
-const express = require('express');
 const { PORT = 4000 } = process.env;
+
+const cors = require('cors');
+const express = require('express');
 const mongoose = require('mongoose');
 const errorHandler = require('./middleware/errors');
-
-const app = express();
-
 const auth = require('./middleware/auth');
-
-const {login, createUser} = require('./controllers/users');
-
+const { login, createUser } = require('./controllers/users');
 const UsersRouter = require('./routes/users');
 const CardsRouter = require('./routes/cards');
-
 // Cors to avoid CORS errors
-const cors = require('cors');
+
+const app = express();
 
 app.use(cors());
 // Middlewares
@@ -43,12 +39,10 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-
 // hola, hice unos cambios en la URL de conexión, y una rutina para
 // probar los parametros usados en la plataforma primero y después la versión 6
 // Estoy usando MongoDB version 6.0.5, Compass 1.36.4 y mongoose ^7.1.0
 async function connectToMongoDB() {
-
   // Connection options for the latest version of Mongoose
   const latestOptions = {
     useNewUrlParser: true,
@@ -68,7 +62,7 @@ async function connectToMongoDB() {
   try {
     // Connect to MongoDB using version 4 of Mongoose
     await mongoose.connect('mongodb://0.0.0.0:27017/aroundb', version4Options);
-    console.log("Connected to MongoDB with version 4");
+    console.log('Connected to MongoDB with version 4');
   } catch (err) {
     version4Error = err;
   }
@@ -76,16 +70,16 @@ async function connectToMongoDB() {
   try {
     // Connect to MongoDB using the latest version of Mongoose
     await mongoose.connect('mongodb://0.0.0.0:27017/aroundb', latestOptions);
-    console.log("Connected to MongoDB with the latest version");
+    console.log('Connected to MongoDB with the latest version');
   } catch (err) {
     latestError = err;
   }
 
   if (version4Error && latestError) {
-    console.error("Both connection attempts failed:");
-    console.error("Error connecting with version 4:", version4Error);
-    console.error("Error connecting with the latest version:", latestError);
-    console.log("Unable to connect to MongoDB.");
+    console.error('Both connection attempts failed:');
+    console.error('Error connecting with version 4:', version4Error);
+    console.error('Error connecting with the latest version:', latestError);
+    console.log('Unable to connect to MongoDB.');
   }
 }
 

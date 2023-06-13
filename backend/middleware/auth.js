@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
+
 const { JWT_SECRET } = process.env;
 const AuthorizationMiddleware = (req, res, next) => {
-  let tokenRaw = req.headers.authorization;
+  const tokenRaw = req.headers.authorization;
 
   // remover "Bearer" del token
-  let token = ""
+  let token = '';
   try {
     token = tokenRaw.replace('Bearer ', '');
-  }
-  catch (err) {
+  } catch (err) {
     return res.status(401).json({ message: 'Formato incorrecto de autorización' });
   }
 
@@ -24,7 +24,7 @@ const AuthorizationMiddleware = (req, res, next) => {
 
     // Si el token es válido, añadir el payload al objeto user
     req.user = payload;
-    //console.log(req.user._id)
+    // console.log(req.user._id)
     next();
   });
 };

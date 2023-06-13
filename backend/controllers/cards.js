@@ -9,7 +9,7 @@ const getCards = (req, res, next) => {
 
 const createCard = (req, res, next) => {
   if (!req.body.name || !req.body.link) {
-    return res.status(400).send({ message: 'Falta informacion en el body' });
+    return res.status(400).send({ message: 'Falta información en el body' });
   }
 
   const { name, link } = req.body;
@@ -37,7 +37,12 @@ const deleteCard = (req, res, next) => {
 };
 
 const likeCard = (req, res, next) => {
-  cardModelMongo.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
+  cardModelMongo
+    .findByIdAndUpdate(
+      req.params.cardId,
+      { $addToSet: { likes: req.user._id } },
+      { new: true },
+    )
     .orFail(() => {
       const err = new Error('No se ha encontrado una tarjeta con ese id');
       err.statusCode = 404;
@@ -48,7 +53,12 @@ const likeCard = (req, res, next) => {
 };
 
 const dislikeCard = (req, res, next) => {
-  cardModelMongo.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
+  cardModelMongo
+    .findByIdAndUpdate(
+      req.params.cardId,
+      { $pull: { likes: req.user._id } },
+      { new: true },
+    )
     .orFail(() => {
       const err = new Error('No se ha encontrado una tarjeta con ese id para quitarle el like');
       err.statusCode = 404;

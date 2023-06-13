@@ -3,12 +3,11 @@ const errorHandler = (err, req, res, next) => {
   res
     .status(statusCode)
     .send({
-     // comprueba el estado y muestra un mensaje basado en dicho estado
+      // comprueba el estado y muestra un mensaje basado en dicho estado
       message: statusCode === 500
         ? 'Se ha producido un error en el servidor'
-        : message
+        : message,
     });
-
 };
 
 module.exports = errorHandler;
